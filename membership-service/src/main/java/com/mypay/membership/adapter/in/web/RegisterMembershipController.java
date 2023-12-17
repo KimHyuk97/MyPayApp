@@ -1,6 +1,9 @@
 package com.mypay.membership.adapter.in.web;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import common.WebAdapter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,11 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
  * -----------------------------------------------------------
  * 2023-12-15        Hyuk Kim       최초 생성
  */
+@WebAdapter
 @RestController
+@RequiredArgsConstructor
 public class RegisterMembershipController {
 
-    @GetMapping("/membership")
-    public void home () {
-        System.out.println("hello membership controller");
+    @PostMapping("/membership/register")
+    void registerMemberShip(@RequestBody RegisterMembershipRequest request) {
+        System.out.println("registerMemberShip : "+ request);
     }
+
 }
