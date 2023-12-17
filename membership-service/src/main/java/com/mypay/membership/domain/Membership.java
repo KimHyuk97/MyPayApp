@@ -20,7 +20,7 @@ import lombok.Value;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Membership {
 
-    private final String membershipId;
+    private final Long membershipId;
 
     private final String name;
 
@@ -39,9 +39,9 @@ public class Membership {
     @Value
     public static class MembershipId {
 
-        String id;
+        Long id;
 
-        public MembershipId (String id) {
+        public MembershipId (Long id) {
             this.id = id;
         }
     }

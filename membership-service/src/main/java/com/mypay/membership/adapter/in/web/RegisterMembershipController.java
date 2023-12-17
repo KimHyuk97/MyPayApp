@@ -1,5 +1,7 @@
 package com.mypay.membership.adapter.in.web;
 
+import com.mypay.membership.application.port.in.RegisterMembershipCommand;
+import com.mypay.membership.application.port.in.RegisterMembershipUseCase;
 import common.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,9 +24,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class RegisterMembershipController {
 
+    private final RegisterMembershipUseCase registerMembershipUseCase;
+
     @PostMapping("/membership/register")
     void registerMemberShip(@RequestBody RegisterMembershipRequest request) {
-        System.out.println("registerMemberShip : "+ request);
+
+        RegisterMembershipCommand command = RegisterMembershipCommand.builder()
+                .name(request.getName())
+                .address(request.getAddress())
+                .email(request.getEmail())
+                .build();
+
+        registerMembershipUseCase.registerMembership(command);
     }
 
 }

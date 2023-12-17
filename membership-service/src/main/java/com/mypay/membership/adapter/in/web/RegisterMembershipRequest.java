@@ -1,6 +1,7 @@
 package com.mypay.membership.adapter.in.web;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * packageName    : com.mypay.membership.adapter.in.web
@@ -14,6 +15,7 @@ import lombok.Getter;
  * 2023-12-17        Hyuk Kim       최초 생성
  */
 @Getter
+@NoArgsConstructor
 public class RegisterMembershipRequest {
 
     private String name;

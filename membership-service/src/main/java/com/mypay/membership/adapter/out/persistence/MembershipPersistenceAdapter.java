@@ -1,5 +1,6 @@
 package com.mypay.membership.adapter.out.persistence;
 
+import com.mypay.membership.application.port.out.FindMembershipPort;
 import com.mypay.membership.application.port.out.RegisterMembershipPort;
 import com.mypay.membership.domain.Membership;
 import common.PersistenceAdapter;
@@ -18,7 +19,9 @@ import lombok.RequiredArgsConstructor;
  */
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class MembershipPersistenceAdapter implements RegisterMembershipPort {
+public class MembershipPersistenceAdapter implements RegisterMembershipPort, FindMembershipPort {
+
+    private final MembershipMapper membershipMapper;
 
     private final MembershipRepository membershipRepository;
 
@@ -32,5 +35,13 @@ public class MembershipPersistenceAdapter implements RegisterMembershipPort {
                         membershipIsValid.isValid()
                 )
         );
+    }
+
+    @Override
+    public Membership findMembership(Membership.MembershipId command) {
+        MembershipJpaEntity findMember = membershipRepository.findById(command.getId())
+                .orElseThrow(() -> new RuntimeException("not find member"));
+
+        return membershipMapper.mapToDomainEntity(findMember);
     }
 }

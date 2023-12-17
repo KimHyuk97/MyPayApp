@@ -19,6 +19,7 @@ import lombok.Getter;
  * 2023-12-17        Hyuk Kim       최초 생성
  */
 @Getter
+@Builder
 @EqualsAndHashCode(callSuper = false)
 public class RegisterMembershipCommand extends SelfValidating<RegisterMembershipCommand> {
 
@@ -34,11 +35,12 @@ public class RegisterMembershipCommand extends SelfValidating<RegisterMembership
     @NotNull
     private final boolean isValid;
 
-    @Builder
     public RegisterMembershipCommand(String name, String email, String address, boolean isValid) {
         this.name = name;
         this.email = email;
         this.address = address;
         this.isValid = isValid;
+
+        this.validateSelf();
     }
 }

@@ -4,7 +4,7 @@ import com.mypay.membership.domain.Membership;
 
 /**
  * packageName    : com.mypay.membership.application.port.out
- * fileName       : RegisterMembershipPort
+ * fileName       : FindMembershipPort
  * author         : Hyuk Kim
  * date           : 2023-12-17
  * description    :
@@ -13,13 +13,7 @@ import com.mypay.membership.domain.Membership;
  * -----------------------------------------------------------
  * 2023-12-17        Hyuk Kim       최초 생성
  */
-public interface RegisterMembershipPort {
+public interface FindMembershipPort {
 
-    void createMembership(
-            Membership.MembershipName membershipName,
-            Membership.MembershipEmail membershipEmail,
-            Membership.MembershipAddress membershipAddress,
-            Membership.MembershipIsValid membershipIsValid,
-            Membership.MembershipIsCorp membershipIsCorp
-    );
+    Membership findMembership(Membership.MembershipId membershipId);
 }
